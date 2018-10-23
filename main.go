@@ -32,15 +32,15 @@ func main() {
 	if ok {
 		*nUrl = nexusUrl
 	}
-	nexusPath, ok := os.LookupEnv("NEXUS_URL")
+	nexusPath, ok := os.LookupEnv("NEXUS_PATH")
 	if ok {
 		*nPath = nexusPath
 	}
-	nexusUser, ok := os.LookupEnv("NEXUS_URL")
+	nexusUser, ok := os.LookupEnv("NEXUS_USER")
 	if ok {
 		*nUser = nexusUser
 	}
-	nexusPass, ok := os.LookupEnv("NEXUS_URL")
+	nexusPass, ok := os.LookupEnv("NEXUS_PASS")
 	if ok {
 		*nPass = nexusPass
 	}
