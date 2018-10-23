@@ -6,6 +6,7 @@ import (
 	//"strings"
 	"net/http"
 	"time"
+	"encoding/base64"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
@@ -26,6 +27,9 @@ const (
 type Exporter struct {
 	nexusUrl				string
 	nexusPath				string
+	nexusUser				string
+	nexusPass				string
+	auth					string
 	availableProcessors		prometheus.Gauge
 	//freeMemory				prometheus.Gauge
 	//totalMemory				prometheus.Gauge
@@ -72,13 +76,17 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 
 }
 
-
 func main() {
 	flag.Parse()
 	log.Infoln("Starting nexus_exporter " + version)
 	nexusUrl := os.Getenv("NEXUS_URL")
 	nexusPath := os.Getenv("NEXUS_PATH")
+	nexusUser := os.Getenv("NEXUS_USER")
+	nexusPass := os.Getenv("NEXUS_PASS")
+	auth := "Basic "+base64.StdEncoding.EncodeToString([]byte(nexusUser+":"+nexusPass))
+	log.infoln(auth)
 	exporter := NewExporter(nexusUrl, nexusPath)
+	
 	prometheus.MustRegister(exporter)
 	http.Handle(*metricPath, prometheus.Handler())
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
