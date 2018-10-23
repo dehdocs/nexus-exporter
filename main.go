@@ -25,19 +25,19 @@ func main() {
 
 	nexusUrl, ok := os.LookupEnv("NEXUS_URL")
 	if ok {
-		*nexusUrl = nexusUrl
+		*nUrl = nexusUrl
 	}
 	nexusPath, ok := os.LookupEnv("NEXUS_URL")
 	if ok {
-		*nexusPath = nexusPath
+		*nPath = nexusPath
 	}
 	nexusUser, ok := os.LookupEnv("NEXUS_URL")
 	if ok {
-		*nexusUser = nexusUser
+		*nUser = nexusUser
 	}
 	nexusPass, ok := os.LookupEnv("NEXUS_URL")
 	if ok {
-		*nexusPass = nexusPass
+		*nPass = nexusPass
 	}
 
 	data = getMetrics();
