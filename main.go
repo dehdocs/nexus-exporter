@@ -15,7 +15,6 @@ func main() {
 
 
 	var (
-		version			= "1.0.0.dev"
 		//listen			= flag.String("web.listen-address",":8080", "Addressto listen")
 		//metricPath		= flag.String("web.telemetry-path","/metrics","Path of the metrics")
 		//landingPage		= []byte("<html><head><title>Nexus-Exporter</title></head><h1>NEXUS EXPORTER "+version+"</h1>")
