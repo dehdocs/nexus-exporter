@@ -26,7 +26,7 @@ func main() {
 		nUser			= flag.String("nexus.user", "admin", "nexus password.")
 		nPass			= flag.String("nexus.pass", "admin123", "nexus password.")
 		data 			string
-		jsonData		[]byte
+		jsonData		[]string
 		availableProcessors = prometheus.NewGauge(prometheus.GaugeOpts{
 			Name: "nexus_processors_available",
 			Help: "Quantity of processors are available in nexus.",
