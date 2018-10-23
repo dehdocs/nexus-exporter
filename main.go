@@ -61,5 +61,5 @@ func getMetrics(url string, path string, user string, pass string) string {
 	log.Infoln(user)
 	log.Infoln(pass)
 
-	return 'teste'
+	return "teste"
 }
