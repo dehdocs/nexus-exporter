@@ -47,6 +47,7 @@ func main() {
 	
 	data = getMetrics(nexusUrl, nexusPath, nexusUser, nexusPass);
 
+	log.Infoln(data)
 	/*http.Handle(*metricPath, prometheus.Handler())
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write(landingPage)
