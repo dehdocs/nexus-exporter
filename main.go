@@ -44,10 +44,10 @@ func main() {
 		*nPass = nexusPass
 	}
 
-	log.Infoln(nUrl)
-	log.Infoln(nPath)
-	log.Infoln(nUser)
-	log.Infoln(nPass)
+	log.Infoln(nexusUrl)
+	log.Infoln(nexusPath)
+	log.Infoln(nexusUser)
+	log.Infoln(nexusPass)
 	/*data = getMetrics(nUrl, nPath, nUser, nPass);
 
 	http.Handle(*metricPath, prometheus.Handler())
