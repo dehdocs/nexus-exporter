@@ -85,9 +85,9 @@ func main() {
 	nexusPass := os.Getenv("NEXUS_PASS")
 	auth := "Basic "+base64.StdEncoding.EncodeToString([]byte(nexusUser+":"+nexusPass))
 	log.Infoln(auth)
-	req, err := http.NewRequest("GET", nexusUrl+"/"+nexusPath, nil)
+	req := http.NewRequest("GET", nexusUrl+"/"+nexusPath, nil)
 	req.Header.Set("Authorization", auth)
-	resp, err := http.DefaultClient.Do(req)
+	resp := http.DefaultClient.Do(req)
 	log.Infoln(resp)
 	exporter := NewExporter(nexusUrl, nexusPath)
 	
