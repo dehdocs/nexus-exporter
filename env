@@ -1,0 +1,6 @@
+NEXUS_URL=http://10.129.176.139:8081
+NEXUS_PATH=/service/siesta/
+http_proxy=http://192.168.116.131:1337
+https_proxy=http://192.168.116.131:1337
+HTTP_PROXY=http://192.168.116.131:1337
+HTTPS_PROXY=http://192.168.116.131:1337
