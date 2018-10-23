@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"encoding/json"
-	"strconv"
 	//"strings"
 	//"time"
 	
@@ -87,11 +86,11 @@ func main() {
 	prometheus.MustRegister(totalMemory)
 	prometheus.MustRegister(maxMemory)
 	
-	threads.Set(strconv.ParseFloat(runtime["threads"]), 64)
-	availableProcessors.Set(strconv.ParseFloat(runtime["availableProcessors"]), 64)
-	freeMemory.Set(strconv.ParseFloat(runtime["freeMemory"]), 64)
-	totalMemory.Set(strconv.ParseFloat(runtime["totalMemory"]), 64)
-	maxMemory.Set(strconv.ParseFloat(runtime["maxMemory"]), 64)
+	threads.Set(float32(runtime["threads"]))
+	availableProcessors.Set(float32(runtime["availableProcessors"]))
+	freeMemory.Set(float32(runtime["freeMemory"]))
+	totalMemory.Set(float32(runtime["totalMemory"]))
+	maxMemory.Set(float32(runtime["maxMemory"]))
 
 
 	http.Handle(*metricPath, prometheus.Handler())
