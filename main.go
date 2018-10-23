@@ -44,7 +44,23 @@ func NewExporter(nexusUrl string, nexusPath string) *Exporter {
 		}),
 	}
 }
+func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 
+	metricCh := make(chan prometheus.Metric)
+	doneCh := make(chan struct{})
+
+	go func() {
+		for m := range metricCh {
+			ch <- m.Desc()
+		}
+		close(doneCh)
+	}()
+
+	e.Collect(metricCh)
+	close(metricCh)
+	<-doneCh
+
+}
 func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	e.scrape(ch)
 	ch <- e.duration
