@@ -55,6 +55,23 @@ func (e *Exporter) scrape(ch chan<- prometheus.Metric) {
 		e.availableProcessors.Set(time.Since(begun).Seconds())
 	}(time.Now())
 }
+func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
+	metricCh := make(chan prometheus.Metric)
+	doneCh := make(chan struct{})
+
+	go func() {
+		for m := range metricCh {
+			ch <- m.Desc()
+		}
+		close(doneCh)
+	}()
+
+	e.Collect(metricCh)
+	close(metricCh)
+	<-doneCh
+
+}
+
 
 func main() {
 	flag.Parse()
