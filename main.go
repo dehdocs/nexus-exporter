@@ -45,6 +45,15 @@ func NewExporter(nexusUrl string, nexusPath string) *Exporter {
 	}
 }
 
+func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
+	e.scrape(ch)
+	ch <- e.duration
+	ch <- e.totalScrapes
+	ch <- e.error
+	e.scrapeErrors.Collect(ch)
+	ch <- e.up
+}
+
 func main() {
 	flag.Parse()
 	log.Infoln("Starting nexus_exporter " + version)
