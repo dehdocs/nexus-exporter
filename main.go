@@ -86,7 +86,7 @@ func main() {
 	prometheus.MustRegister(totalMemory)
 	prometheus.MustRegister(maxMemory)
 	
-	/threads.Set(runtime["threads"])
+	threads.Set(runtime["threads"])
 	availableProcessors.Set(runtime["availableProcessors"])
 	freeMemory.Set(runtime["freeMemory"])
 	totalMemory.Set(runtime["totalMemory"])
