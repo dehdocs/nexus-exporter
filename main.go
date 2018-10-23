@@ -77,7 +77,7 @@ func main() {
 	json.Unmarshal([]byte(data), &jsonData)
 	runtime := jsonData["system-runtime"].(map[string]interface{})
 
-	log.Infoln()
+	log.Infoln(runtime['threads'])
 	
 
 	prometheus.MustRegister(threads)
