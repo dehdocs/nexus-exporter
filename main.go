@@ -11,13 +11,20 @@ import (
 	//"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
 )
+
+var (
+	availableProcessors = prometheus.NewGauge(prometheus.GaugeOpts{
+		Name: "nexus_processors_available",
+		Help: "Quantity of processors are available in nexus.",
+	})
+)
 func main() {
 
 
 	var (
-		//listen			= flag.String("web.listen-address",":8080", "Addressto listen")
-		//metricPath		= flag.String("web.telemetry-path","/metrics","Path of the metrics")
-		//landingPage		= []byte("<html><head><title>Nexus-Exporter</title></head><h1>NEXUS EXPORTER "+version+"</h1>")
+		/	
+		metricPath		= flag.String("web.telemetry-path","/metrics","Path of the metrics")
+		landingPage		= []byte("<html><head><title>Nexus-Exporter</title></head><h1>NEXUS EXPORTER "+version+"</h1>")
 		nUrl			= flag.String("nexus.uri", "http://10.129.176.139:8081", "HTTP API address of nexus.")
 		nPath			= flag.String("nexus.path", "/service/siesta/atlas/system-information", "nexus api path.")
 		nUser			= flag.String("nexus.user", "admin", "nexus password.")
@@ -47,13 +54,15 @@ func main() {
 	
 	data = getMetrics(nexusUrl, nexusPath, nexusUser, nexusPass);
 
-	log.Infoln(data)
-	/*http.Handle(*metricPath, prometheus.Handler())
+	prometheus.MustRegister(availableProcessors)
+	cpuTemp.Set(65.3)
+
+	http.Handle(*metricPath, prometheus.Handler())
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write(landingPage)
 	})
 	log.Infoln("Listening on", *listen)
-	log.Fatal(http.ListenAndServe(*listen, nil))*/
+	log.Fatal(http.ListenAndServe(*listen, nil))
 }
 
 func getMetrics(url string, path string, user string, pass string) string {	
