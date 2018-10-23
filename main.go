@@ -3,8 +3,9 @@ package main
 import (
 	"flag"
 	"os"
-	//"io/ioutil"
+	"io/ioutil"
 	"net/http"
+	"fmt"
 	//"strings"
 	//"time"
 	
@@ -24,7 +25,7 @@ func main() {
 		nPath			= flag.String("nexus.path", "/service/siesta/atlas/system-information", "nexus api path.")
 		nUser			= flag.String("nexus.user", "admin", "nexus password.")
 		nPass			= flag.String("nexus.pass", "admin123", "nexus password.")
-		//data 			string
+		data 			[]string
 		availableProcessors = prometheus.NewGauge(prometheus.GaugeOpts{
 			Name: "nexus_processors_available",
 			Help: "Quantity of processors are available in nexus.",
@@ -51,8 +52,12 @@ func main() {
 	}
 
 	
-	//data = getMetrics(nexusUrl, nexusPath, nexusUser, nexusPass);
-
+	data = getMetrics(nexusUrl, nexusPath, nexusUser, nexusPass);
+	bytes, err := json.Marshal(data)
+	if err != nil{
+        log.Fatal(err)
+	}
+	fmt.Println(string(bytes))
 	prometheus.MustRegister(availableProcessors)
 	availableProcessors.Set(65.3)
 
@@ -64,7 +69,7 @@ func main() {
 	log.Fatal(http.ListenAndServe(*listen, nil))
 }
 
-/*func getMetrics(url string, path string, user string, pass string) string {	
+func getMetrics(url string, path string, user string, pass string) string {	
 	client := &http.Client{}
 	req, err:= http.NewRequest("GET", url+path, nil)
 	req.SetBasicAuth(user, pass)
@@ -76,4 +81,4 @@ func main() {
 	bodyText, err := ioutil.ReadAll(resp.Body)
 
 	return string(bodyText)
-}*/
+}
