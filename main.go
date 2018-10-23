@@ -54,7 +54,7 @@ func main() {
 	data = getMetrics(nexusUrl, nexusPath, nexusUser, nexusPass);
 
 	prometheus.MustRegister(availableProcessors)
-	cpuTemp.Set(65.3)
+	availableProcessors.Set(65.3)
 
 	http.Handle(*metricPath, prometheus.Handler())
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
