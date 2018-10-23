@@ -54,11 +54,11 @@ func main() {
 
 	
 	data = getMetrics(nexusUrl, nexusPath, nexusUser, nexusPass);
-	bytes, err := json.Marshal(data)
+	jsonData, err := json.Marshal(data)
 	if err != nil{
         log.Fatal(err)
 	}
-	fmt.Println(string(bytes))
+	log.Infoln(jsonData.availableProcessors)
 	prometheus.MustRegister(availableProcessors)
 	availableProcessors.Set(65.3)
 
