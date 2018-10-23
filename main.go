@@ -86,11 +86,11 @@ func main() {
 	prometheus.MustRegister(totalMemory)
 	prometheus.MustRegister(maxMemory)
 	
-	threads.Set(float32(runtime["threads"]))
+	/*threads.Set(float32(runtime["threads"]))
 	availableProcessors.Set(float32(runtime["availableProcessors"]))
 	freeMemory.Set(float32(runtime["freeMemory"]))
 	totalMemory.Set(float32(runtime["totalMemory"]))
-	maxMemory.Set(float32(runtime["maxMemory"]))
+	maxMemory.Set(float32(runtime["maxMemory"]))*/
 
 
 	http.Handle(*metricPath, prometheus.Handler())
