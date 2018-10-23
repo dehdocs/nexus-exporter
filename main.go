@@ -95,7 +95,7 @@ func main() {
 	}
 	bodyText, err := ioutil.ReadAll(resp.Body)
     s := string(bodyText)
-	log.Infoln(bodyText)
+	log.Infoln(s)
 	
 	
 	exporter := NewExporter(nexusUrl, nexusPath)
