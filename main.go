@@ -6,7 +6,6 @@ import (
 	//"strings"
 	"net/http"
 	"time"
-	"encoding/base64"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
@@ -88,7 +87,7 @@ func main() {
 	client := &http.Client{}
 	req, err:= http.NewRequest("GET", nexusUrl+nexusPath, nil)
 	req.SetBasicAuth(nexusUser, nexusPass)
-	resp, err := Client.Do(req)
+	resp, err := client.Do(req)
 
 	if err != nil{
         log.Fatal(err)
