@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"os"
+	"io/ioutil"
+	"net/http"
 	//"strings"
-	//"net/http"
 	//"time"
-	//"io/ioutil"
-
+	
 	//"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
 )
