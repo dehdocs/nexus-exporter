@@ -22,6 +22,8 @@ func main() {
 		nUrl			= flag.String("nexus.uri", "http://10.129.176.139:8081", "HTTP API address of nexus.")
 		nPath			= flag.String("nexus.path", "/service/siesta/atlas/system-information", "nexus api path.")
 		nUser			= flag.String("nexus.user", "admin", "nexus password.")
+		nPass			= flag.String("nexus.pass", "admin123", "nexus password.")
+		data 			string
 	)
 
 	flag.Parse()
