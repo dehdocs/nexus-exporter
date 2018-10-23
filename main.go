@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strconv"
-	"strings"
+	//"strings"
 	//"time"
 	
 	"github.com/prometheus/client_golang/prometheus"
@@ -80,8 +80,8 @@ func main() {
 	runtime := jsonData["system-runtime"].(map[string]interface{})
 	
 	
-	fmt.Println(strconv.ParseFloat(strings.TrimSpace(runtime["threads"]),64))
-
+	fmt.Println(runtime["threads"].(float32))
+	
 	prometheus.MustRegister(threads)
 	prometheus.MustRegister(availableProcessors)
 	prometheus.MustRegister(freeMemory)
