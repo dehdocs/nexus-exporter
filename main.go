@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strconv"
-	//"strings"
+	"strings"
 	//"time"
 	
 	"github.com/prometheus/client_golang/prometheus"
