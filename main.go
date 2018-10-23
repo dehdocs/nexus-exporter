@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"os"
-	"io/ioutil"
-	"net/http"
+	//"io/ioutil"
+	//"net/http"
 	//"strings"
 	//"time"
 	
