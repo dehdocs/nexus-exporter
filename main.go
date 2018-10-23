@@ -22,7 +22,7 @@ func main() {
 		nPath			= flag.String("nexus.path", "/service/siesta/atlas/system-information", "nexus api path.")
 		nUser			= flag.String("nexus.user", "admin", "nexus password.")
 		nPass			= flag.String("nexus.pass", "admin123", "nexus password.")
-		//data 			string
+		data 			string
 	)
 
 	flag.Parse()
