@@ -13,6 +13,7 @@ import (
 )
 func main() {
 
+
 	var (
 		version		= "1.0.0.dev"
 		listen		= flag.String("web.listen-address",":8080", "Addressto listen")
@@ -22,19 +23,19 @@ func main() {
 
 	flag.Parse()
 
-	nexusUrl, ok := os.LookupEnv("NEXUS_URL")
+	nexusUrl, ok := os.Getenv("NEXUS_URL")
 	if ok {
 		*nexusUrl = nexusUrl
 	}
-	nexusPath, ok := os.LookupEnv("NEXUS_URL")
+	nexusPath, ok := os.Getenv("NEXUS_URL")
 	if ok {
 		*nexusPath = nexusPath
 	}
-	nexusUser, ok := os.LookupEnv("NEXUS_URL")
+	nexusUser, ok := os.Getenv("NEXUS_URL")
 	if ok {
 		*nexusUser = nexusUser
 	}
-	nexusPass, ok := os.LookupEnv("NEXUS_URL")
+	nexusPass, ok := os.Getenv("NEXUS_URL")
 	if ok {
 		*nexusPass = nexusPass
 	}
