@@ -77,7 +77,7 @@ func main() {
 	json.Unmarshal([]byte(data), &jsonData)
 	runtime := jsonData["system-runtime"].(map[string]interface{})
 
-	log.Infoln(runtime['threads'])
+	log.Infoln(runtime["threads"])
 	
 
 	prometheus.MustRegister(threads)
@@ -86,11 +86,11 @@ func main() {
 	prometheus.MustRegister(totalMemory)
 	prometheus.MustRegister(maxMemory)
 	
-	/*threads.Set(runtime['threads'])
-	availableProcessors.Set(runtime['availableProcessors'])
-	freeMemory.Set(runtime['freeMemory'])
-	totalMemory.Set(runtime['totalMemory'])
-	maxMemory.Set(runtime['maxMemory'])*/
+	/threads.Set(runtime["threads"])
+	availableProcessors.Set(runtime["availableProcessors"])
+	freeMemory.Set(runtime["freeMemory"])
+	totalMemory.Set(runtime["totalMemory"])
+	maxMemory.Set(runtime["maxMemory"])
 
 
 	http.Handle(*metricPath, prometheus.Handler())
