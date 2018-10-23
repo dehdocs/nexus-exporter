@@ -79,7 +79,7 @@ func main() {
 	runtime := jsonData["system-runtime"].(map[string]interface{})
 	
 	
-	fmt.Println(runtime["threads"].(float32))
+	fmt.Println(runtime["threads"].(float64))
 	
 	prometheus.MustRegister(threads)
 	prometheus.MustRegister(availableProcessors)
