@@ -56,11 +56,16 @@ func main() {
 	log.Fatal(http.ListenAndServe(*listen, nil))*/
 }
 
-func getMetrics(url string, path string, user string, pass string) string {
-	log.Infoln(url)
-	log.Infoln(path)
-	log.Infoln(user)
-	log.Infoln(pass)
+func getMetrics(url string, path string, user string, pass string) string {	
+	client := &http.Client{}
+	req, err:= http.NewRequest("GET", url+path, nil)
+	req.SetBasicAuth(user, pass)
+	resp, err := client.Do(req)
 
-	return "teste"
+	if err != nil{
+        log.Fatal(err)
+	}
+	bodyText, err := ioutil.ReadAll(resp.Body)
+
+	return string(bodyText)
 }
