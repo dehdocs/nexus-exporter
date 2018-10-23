@@ -5,7 +5,7 @@ import (
 	"os"
 	//"strings"
 	"net/http"
-	//"time"
+	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
