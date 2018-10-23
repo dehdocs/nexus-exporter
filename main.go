@@ -92,8 +92,9 @@ func main() {
 	if err != nil{
         log.Fatal(err)
 	}
-	
-	log.Infoln(resp)
+	bodyText, err := ioutil.ReadAll(resp.Body)
+    s := string(bodyText)
+	log.Infoln(bodyText)
 	
 	
 	exporter := NewExporter(nexusUrl, nexusPath)
