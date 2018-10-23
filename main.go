@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"encoding/json"
+	"fmt"
 	//"strings"
 	//"time"
 	
@@ -77,8 +78,8 @@ func main() {
 	json.Unmarshal([]byte(data), &jsonData)
 	runtime := jsonData["system-runtime"].(map[string]interface{})
 
-	log.Infoln(runtime["threads"])
-	
+
+	fmt.Println(reflect.TypeOf(runtime["threads"]))
 
 	prometheus.MustRegister(threads)
 	prometheus.MustRegister(availableProcessors)
