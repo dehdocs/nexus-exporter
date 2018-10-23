@@ -84,7 +84,7 @@ func main() {
 	nexusUser := os.Getenv("NEXUS_USER")
 	nexusPass := os.Getenv("NEXUS_PASS")
 
-
+	log.Infoln(nexusUrl+nexusPath)
 	client := &http.Client{}
 	req, err:= http.NewRequest("GET", nexusUrl+nexusPath, nil)
 	req.SetBasicAuth(nexusUser, nexusPass)
