@@ -55,7 +55,7 @@ func main() {
 	log.Fatal(http.ListenAndServe(*listen, nil))*/
 }
 
-func getMetrics(url, path, user, pass) string {
+func getMetrics(url string, path string, user string, pass string) string {
 	log.Infoln(url)
 	log.Infoln(path)
 	log.Infoln(user)
