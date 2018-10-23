@@ -45,7 +45,7 @@ func main() {
 		*nPass = nexusPass
 	}
 
-	data = getMetrics();
+	data = getMetrics(nUrl, nPath, nUser, nPass);
 
 	http.Handle(*metricPath, prometheus.Handler())
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -55,6 +55,8 @@ func main() {
 	log.Fatal(http.ListenAndServe(*listen, nil))
 }
 
-func getMetrics(){
-	log.Infoln(*nexusPass)
+func getMetrics(url string, path string, user string, pass string){
+	log.Infoln(url+path)
+
+	return 'oi';
 }
