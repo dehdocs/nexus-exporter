@@ -84,7 +84,7 @@ func main() {
 	nexusUser := os.Getenv("NEXUS_USER")
 	nexusPass := os.Getenv("NEXUS_PASS")
 	auth := "Basic "+base64.StdEncoding.EncodeToString([]byte(nexusUser+":"+nexusPass))
-	log.infoln(auth)
+	log.Infoln(auth)
 	exporter := NewExporter(nexusUrl, nexusPath)
 	
 	prometheus.MustRegister(exporter)
