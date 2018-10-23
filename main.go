@@ -5,17 +5,13 @@ import (
 	"os"
 	//"strings"
 	"net/http"
-	"time"
-	"io/ioutil"
+	//"time"
+	//"io/ioutil"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
 )
 func main() {
-	nexusUrl := os.Getenv("NEXUS_URL")
-	nexusPath := os.Getenv("NEXUS_PATH")
-	nexusUser := os.Getenv("NEXUS_USER")
-	nexusPass := os.Getenv("NEXUS_PASS")
 
 	var (
 		version		= "1.0.0.dev"
