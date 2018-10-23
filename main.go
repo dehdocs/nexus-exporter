@@ -54,9 +54,13 @@ func main() {
 
 	
 	data = getMetrics(nexusUrl, nexusPath, nexusUser, nexusPass);
-	json.Unmarshal([]byte(data), &jsonData)
 
-	log.Infoln(jsonData["system-runtime"])
+	
+
+	json.Unmarshal([]byte(data), &jsonData)
+	runtime := jsonData["system-runtime"].(map[string]interface{})
+
+	log.Infoln(runtime)
 	
 
 	prometheus.MustRegister(availableProcessors)
