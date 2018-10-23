@@ -27,9 +27,26 @@ func main() {
 		nPass			= flag.String("nexus.pass", "admin123", "nexus password.")
 		data 			string
 		jsonData 			map[string]interface{}
+
+		threads = prometheus.NewGauge(prometheus.GaugeOpts{
+			Name: "nexus_threads",
+			Help: "Quantity of threads are available in nexus.",
+		})
 		availableProcessors = prometheus.NewGauge(prometheus.GaugeOpts{
 			Name: "nexus_processors_available",
 			Help: "Quantity of processors are available in nexus.",
+		})
+		freeMemory = prometheus.NewGauge(prometheus.GaugeOpts{
+			Name: "nexus_freeMemory",
+			Help: "Quantity of free memory are available in nexus.",
+		})
+		totalMemory = prometheus.NewGauge(prometheus.GaugeOpts{
+			Name: "nexus_totalMemory",
+			Help: "Quantity of total memory are available in nexus.",
+		})
+		maxMemory = prometheus.NewGauge(prometheus.GaugeOpts{
+			Name: "nexus_maxMemory",
+			Help: "Quantity of max memory in nexus.",
 		})
 	)
 
@@ -60,11 +77,21 @@ func main() {
 	json.Unmarshal([]byte(data), &jsonData)
 	runtime := jsonData["system-runtime"].(map[string]interface{})
 
-	log.Infoln(runtime)
+	log.Infoln()
 	
 
+	prometheus.MustRegister(threads)
 	prometheus.MustRegister(availableProcessors)
-	availableProcessors.Set(65.3)
+	prometheus.MustRegister(freeMemory)
+	prometheus.MustRegister(totalMemory)
+	prometheus.MustRegister(maxMemory)
+	
+	threads.Set(runtime['threads'])
+	availableProcessors.Set(runtime['availableProcessors'])
+	freeMemory.Set(runtime['freeMemory'])
+	totalMemory.Set(runtime['totalMemory'])
+	maxMemory.Set(runtime['maxMemory'])
+
 
 	http.Handle(*metricPath, prometheus.Handler())
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
