@@ -22,7 +22,7 @@ func main() {
 
 
 	var (
-		/	
+		
 		metricPath		= flag.String("web.telemetry-path","/metrics","Path of the metrics")
 		landingPage		= []byte("<html><head><title>Nexus-Exporter</title></head><h1>NEXUS EXPORTER "+version+"</h1>")
 		nUrl			= flag.String("nexus.uri", "http://10.129.176.139:8081", "HTTP API address of nexus.")
