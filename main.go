@@ -51,7 +51,7 @@ func main() {
 	}
 
 	
-	data = getMetrics(nexusUrl, nexusPath, nexusUser, nexusPass);
+	//data = getMetrics(nexusUrl, nexusPath, nexusUser, nexusPass);
 
 	prometheus.MustRegister(availableProcessors)
 	availableProcessors.Set(65.3)
@@ -64,7 +64,7 @@ func main() {
 	log.Fatal(http.ListenAndServe(*listen, nil))
 }
 
-func getMetrics(url string, path string, user string, pass string) string {	
+/*func getMetrics(url string, path string, user string, pass string) string {	
 	client := &http.Client{}
 	req, err:= http.NewRequest("GET", url+path, nil)
 	req.SetBasicAuth(user, pass)
@@ -76,4 +76,4 @@ func getMetrics(url string, path string, user string, pass string) string {
 	bodyText, err := ioutil.ReadAll(resp.Body)
 
 	return string(bodyText)
-}
+}*/
