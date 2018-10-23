@@ -83,15 +83,20 @@ func main() {
 	nexusPath := os.Getenv("NEXUS_PATH")
 	nexusUser := os.Getenv("NEXUS_USER")
 	nexusPass := os.Getenv("NEXUS_PASS")
-	auth := "Basic "+base64.StdEncoding.EncodeToString([]byte(nexusUser+":"+nexusPass))
-	log.Infoln(auth)
 
 
 	client := &http.Client{}
-	req := http.NewRequest("GET", nexusUrl+nexusPath, nil)
+	req, err:= http.NewRequest("GET", nexusUrl+nexusPath, nil)
 	req.SetBasicAuth(nexusUser, nexusPass)
-	resp := client.Do(req)
+	resp, err := Client.Do(req)
+
+	if err != nil{
+        log.Fatal(err)
+	}
+	
 	log.Infoln(resp)
+	
+	
 	exporter := NewExporter(nexusUrl, nexusPath)
 	
 	prometheus.MustRegister(exporter)
