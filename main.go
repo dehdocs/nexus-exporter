@@ -4,10 +4,11 @@ import (
 	"flag"
 	"os"
 	"strings"
+	"net/http"
 	//"time"
 
 	"github.com/prometheus/client_golang/prometheus"
-	//"github.com/prometheus/common/log"
+	"github.com/prometheus/common/log"
 )
 
 var (
@@ -49,7 +50,7 @@ func main() {
 	log.Infoln("Starting nexus_exporter " + version)
 	nexusUrl := os.Getenv("NEXUS_URL")
 	nexusPath := os.Getenv("NEXUS_PATH")
-	exporter := NewExporter(dsn)
+	exporter := NewExporter(nexusUrl, nexusPath)
 	prometheus.MustRegister(exporter)
 	http.Handle(*metricPath, prometheus.Handler())
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
