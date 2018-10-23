@@ -50,7 +50,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 }
 
 func (e *Exporter) scrape(ch chan<- prometheus.Metric) {
-	var err error
+	//var err error
 	defer func(begun time.Time) {
 		e.availableProcessors.Set(time.Since(begun).Seconds())
 	}(time.Now())
