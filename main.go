@@ -23,19 +23,19 @@ func main() {
 
 	flag.Parse()
 
-	nexusUrl, ok := os.Getenv("NEXUS_URL")
+	nexusUrl, ok := os.LookupEnv("NEXUS_URL")
 	if ok {
 		*nexusUrl = nexusUrl
 	}
-	nexusPath, ok := os.Getenv("NEXUS_URL")
+	nexusPath, ok := os.LookupEnv("NEXUS_URL")
 	if ok {
 		*nexusPath = nexusPath
 	}
-	nexusUser, ok := os.Getenv("NEXUS_URL")
+	nexusUser, ok := os.LookupEnv("NEXUS_URL")
 	if ok {
 		*nexusUser = nexusUser
 	}
-	nexusPass, ok := os.Getenv("NEXUS_URL")
+	nexusPass, ok := os.LookupEnv("NEXUS_URL")
 	if ok {
 		*nexusPass = nexusPass
 	}
