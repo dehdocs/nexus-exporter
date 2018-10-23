@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	//"os"
-	//"strings"
+	"os"
+	"strings"
 	//"time"
 
 	"github.com/prometheus/client_golang/prometheus"
@@ -23,18 +23,32 @@ const (
 )
 
 type Exporter struct {
-	dsn			string
-	availableProcessors 	prometheus.Gauge
-	freeMemory         	 prometheus.Gauge
-	totalMemory         	prometheus.Gauge
-	maxMemory           	prometheus.Gauge
-	threads             	prometheus.Gauge
+	nexusUrl				string
+	nexusPath				string
+	availableProcessors		prometheus.Gauge
+	//freeMemory				prometheus.Gauge
+	//totalMemory				prometheus.Gauge
+	//maxMemory				prometheus.Gauge
+	//threads					prometheus.Gauge
+}
+func NewExporter(nexusUrl string, nexusPath string) *Exporter {
+	return &Exporter{
+		nexusUrl: nexusUrl,
+		nexusPath: nexusPath,
+		availableProcessors: prometheus.NewGauge(prometheus.GaugeOpts{
+			Namespace: namespace,
+			Subsystem: exporter,
+			Name:      "nexus_processors_available",
+			Help:      "Quantity of processors are available in nexus.",
+		}),
+	}
 }
 
 func main() {
 	flag.Parse()
 	log.Infoln("Starting nexus_exporter " + version)
-	dsn := os.Getenv("DATA_SOURCE_NAME")
+	nexusUrl := os.Getenv("NEXUS_URL")
+	nexusPath := os.Getenv("NEXUS_PATH")
 	exporter := NewExporter(dsn)
 	prometheus.MustRegister(exporter)
 	http.Handle(*metricPath, prometheus.Handler())
