@@ -32,7 +32,7 @@ func main() {
 			Name: "nexus_threads",
 			Help: "Quantity of threads are available in nexus.",
 		})
-		availableProcessors = prometheus.NewGauge(prometheus.GaugeOpts{
+		availableProcessors = prometheus.NewHistogramVec(prometheus.HistogramOpts{
 			Name: "nexus_processors_available",
 			Help: "Quantity of processors are available in nexus.",
 		})
@@ -85,7 +85,7 @@ func main() {
 	prometheus.MustRegister(maxMemory)
 	
 	threads.Set(runtime["threads"].(float64))
-	availableProcessors.Set(runtime["availableProcessors"].(float64))
+	availableProcessors.Write(runtime["availableProcessors"])
 	freeMemory.Set(runtime["freeMemory"].(float64))
 	totalMemory.Set(runtime["totalMemory"].(float64))
 	maxMemory.Set(runtime["maxMemory"].(float64))
