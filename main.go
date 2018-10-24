@@ -32,7 +32,7 @@ func main() {
 			Name: "nexus_threads",
 			Help: "Quantity of threads are available in nexus.",
 		})
-		availableProcessors = prometheus.NewHistogramVec(prometheus.HistogramOpts{
+		availableProcessors = prometheus.NewHistogram(prometheus.HistogramOpts{
 			Name: "nexus_processors_available",
 			Help: "Quantity of processors are available in nexus.",
 		})
